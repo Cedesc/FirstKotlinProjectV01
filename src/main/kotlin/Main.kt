@@ -17,12 +17,14 @@ fun main(args: Array<String>) {
     println(foo)
 
 
+
     // Arrays
     print("\n")
     var myArray = arrayOf(2, "So ein Feuerball!")
     println(myArray[1])
     myArray = Array(2){i -> i} // [0, 1]
     println(myArray[1])
+
 
 
     // if clauses
@@ -32,6 +34,18 @@ fun main(args: Array<String>) {
     } else {
         println("Never!")
     }
+
+    // more efficient if clauses
+    val aIf = 42
+    val bIf = 1337
+    val maxIf1 = if(aIf > bIf) aIf else bIf
+    val maxIf2 = if(aIf > bIf) {
+        aIf
+    } else {
+        bIf
+    }
+
+
 
 
     // for loops
@@ -48,7 +62,6 @@ fun main(args: Array<String>) {
         print(" - $index - ")
     }
 
-
     // while loops
     print("\n")
     do {
@@ -57,6 +70,8 @@ fun main(args: Array<String>) {
         }
         continue
     } while (false)
+
+
 
 
     // user input and casting
@@ -71,16 +86,6 @@ fun main(args: Array<String>) {
 
 
 
-    // exercise integer overflow
-    print("\n")
-    var myInteger: Int = 2147483647
-    // myInteger = 1
-    while (myInteger > 0) {
-        myInteger++
-    }
-    myInteger--
-    println("Maximum size of an Integer: $myInteger")
-
 
     // Maybe Typen
     var myString1: String? = null
@@ -94,5 +99,64 @@ fun main(args: Array<String>) {
         println("If you see this in the console, myString1 is certainly not null!")
         // "let" if myString is not null, execute arbitrary code
     }
+
+
+
+
+    // nullable Booleans
+    var myBool: Boolean? = null
+    if (myBool == true) { // "if (myBool)" is not good
+        println(myBool)
+    } else {
+        println("false or null")
+    }
+    myBool?.let {
+        println("Hello")
+    }
+
+
+
+
+    // Swap variables
+    var aSwap: Int = 111
+    var bSwap: Int = 222
+    aSwap = bSwap.also { // inside the brackets, the previous command isn't executed
+        bSwap = aSwap
+    }
+    println("aSwap: $aSwap  bSwap: $bSwap")
+
+
+
+
+    // Typecasts
+    val myVar1: Int = 1337
+    val myVar2: Byte = myVar1.toByte()
+    val myVar3: Int = 3
+    val myVar4: Char = myVar3.toChar()
+
+    println("After Typecast: $myVar2 and $myVar4")
+
+
+
+
+
+
+
+
+
+    // Exercises
+
+    // exercise integer overflow
+    print("\n")
+    var myInteger: Int = 2147483647
+    // myInteger = 1
+    while (myInteger > 0) {
+        myInteger++
+    }
+    myInteger--
+//    println("Maximum size of an Integer: $myInteger")
+
+
+
 
 }
