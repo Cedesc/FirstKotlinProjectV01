@@ -1,3 +1,8 @@
+fun func1(someNumber: Int): Int {
+    return someNumber + 11
+}
+
+
 fun main(args: Array<String>) {
 
     // Constants, variables and print commands
@@ -223,6 +228,9 @@ fun main(args: Array<String>) {
 //    println("Maximum size of an Integer: $myInteger")
 
 
+    // exercise modulo #31
+
+    // exercise faculty # 36
 
 
 }
