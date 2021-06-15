@@ -255,5 +255,7 @@ fun main(args: Array<String>) {
 
     // exercise letter replacement #42
 
+    // exercise inheritance #51
+
 
 }
