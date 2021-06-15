@@ -1,5 +1,20 @@
-fun func1(someNumber: Int): Int {
-    return someNumber + 11
+import kotlin.math.*
+
+
+// default parameter
+// one line function
+fun func1(number1: Int = 1337, number2: Int = 42, number3: Int): Int = number1 + number2 + number3
+
+// in default parameters there can be functions too
+// Unit is the default return Type
+fun func2(arr: Array<Int>, len: Int = arr.size): Unit {
+    return
+}
+
+// test function for the above ones
+fun main2() {
+    println(func1(number2 = 42, number3 = 5))
+    println(func1(5, 1, 1))
 }
 
 
@@ -225,12 +240,20 @@ fun main(args: Array<String>) {
         myInteger++
     }
     myInteger--
-//    println("Maximum size of an Integer: $myInteger")
+    //println("Maximum size of an Integer: $myInteger")
 
 
     // exercise modulo #31
 
-    // exercise faculty # 36
+    // exercise faculty #36
+
+    // exercise abs (Betrag) #39
+
+    // exercise sum over array #40
+
+    // exercise calculate sinus by hand #41
+
+    // exercise letter replacement #42
 
 
 }
