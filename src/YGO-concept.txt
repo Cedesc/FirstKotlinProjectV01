@@ -1,0 +1,43 @@
+Plan:
+    1. Planning with all features
+    2. Planning a small version, only with the first few features
+    3. Implement the small version (with TDD?)
+
+
+Classes:
+    Deck {abstract}
+        => MainDeck, ExtraDeck, SideDeck
+    Card {abstract}
+        - Type, Attribute as Enums
+        => MonsterCard {abstract}
+            // todo normal/effect, pendulum, tuner, union, specialSummoned as attribute and/or interface?
+            // todo what to do with counters?
+            => MonsterCardMain
+            => MonsterCardRitual
+            => MonsterCardFusion
+            => MonsterCardSynchro
+            => MonsterCardXYZ
+            => MonsterCardLink
+        => SpellCard {abstract}
+            => SpellCardNormal, SpellCardQuick, etc...
+        => TrapCard {abstract}
+            => TrapCardNormal, TrapCardCounter, etc...
+    CardCreator {abstract}
+        - using factory Method
+        => MonsterCardCreator, SpellCardCreator, TrapCardCreator
+
+
+Further:
+    - Ban lists
+    - Effects  // todo command pattern?
+    - Duel  // todo singleton pattern?
+        - attacking, drawing, discarding, destroying, etc...?
+    - 2v2 Duels
+    - Turns, Phases // todo at end of the turn iterate all cards etc on the field with iterator pattern?
+        - beginning and ending of a turn
+        - Effects that resolve at an specific phase of a turn
+    - Reacting on Actions  // todo observer pattern?
+    - CompleteField
+        - Field, Hand, Deck, Graveyard, ...
+    // todo somewhere strategy (control over algorithm during runtime), template method, state pattern?
+
