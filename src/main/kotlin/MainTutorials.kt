@@ -226,6 +226,39 @@ fun main(args: Array<String>) {
 
 
 
+    // Lambda Functions
+    print("\n")
+    val lambdaFunctionAdd = {a: Int, b: Int -> a+b}
+
+
+
+
+    // Arrays of special Types and Lists
+    val charArray: CharArray = charArrayOf('h', 'e', 'y') // Array of Chars
+    val hiString: String = String(charArray)
+
+    val basicArray = arrayOf(1, 2, 3, 4)
+    val basicList = listOf(11, 22, 33, 44)
+    println("Print for array: $basicArray   Print for list: $basicList")
+    println("Get element of the list with getorelse: " + basicList.getOrElse(10) { "Element not found" })
+    println("Get third element more efficient with component3: " + basicList.component3())
+
+    // concatenate, Add and delete
+    var extendedList = basicList + listOf(55, 66, 77, 77, 88)
+    println("Extended list: $extendedList")
+    var extendedListAfterDeletion = extendedList - 55
+    extendedListAfterDeletion -= listOf(77, 22, 33, 187)
+    println("Extended list after deletion: $extendedListAfterDeletion")
+
+    // reverse, partition, slice, chunked
+    println("Extended list reversed: " + extendedList.reversed() + "  But the list itself is unchanged: $extendedList")
+    val partitionedList = extendedList.partition { it in 40..50 || it == 88 }
+    println("Partitioned List: $partitionedList")
+    val slicedList = extendedList.slice(1..4)
+    println("Sliced List: $slicedList")
+    val chunkedList = extendedList.chunked(4)
+    println("Chunked List: $chunkedList")
+
 
 
 
