@@ -1,3 +1,5 @@
+package tutorials
+
 // Interfaces
 // It is possible that classes inherit from multiple interfaces but not from multiple classes!
 interface SomeInterface {
@@ -51,7 +53,7 @@ abstract class FatherOfTheJoonge() {
     protected open var height: Double = 2.0
 
     public fun catchphrase(): String {
-        return "So ein Feuerball, Joonge!"
+        return "So ein Feuerball, tutorials.Joonge!"
     }
 
     protected open fun printMe() {
@@ -90,11 +92,11 @@ class Joonge(name: String, protected override var height: Double = 1.62): Father
 
     // Override
     protected override fun printMe() {
-        println("Joonge, I am $name and I have $numberOfArms arms and I am " + this.height + "m, Joonge!")
+        println("tutorials.Joonge, I am $name and I have $numberOfArms arms and I am " + this.height + "m, tutorials.Joonge!")
     }
 
     override fun toString(): String {
-        return "Joonge(height=$height, name='$name', numberOfArms=$numberOfArms)"
+        return "tutorials.Joonge(height=$height, name='$name', numberOfArms=$numberOfArms)"
     }
 
     fun dropCatchphraseWithExtra(): String {
@@ -127,7 +129,7 @@ class School() {
 
 // Extension
 fun School.sayTheSchoolName(): String {
-    return "Mr. Poopybutthole Elementary School"
+    return "Mr. Poopybutthole Elementary tutorials.School"
 }
 
 
@@ -148,7 +150,7 @@ fun main(args: Array<String>) {
 
     print("\n")
     val school: School = School()
-    println("Print method of a School per extension:  " + school.sayTheSchoolName())
+    println("Print method of a tutorials.School per extension:  " + school.sayTheSchoolName())
 }
 
 

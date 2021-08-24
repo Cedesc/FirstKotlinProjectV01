@@ -1,4 +1,4 @@
-import kotlin.math.*
+package tutorials
 
 
 // default parameter
@@ -291,4 +291,10 @@ fun main(args: Array<String>) {
     // exercise inheritance #51
 
 
+}
+
+class MyClass{
+    fun foo(a: Int): Int {
+        return a + 42
+    }
 }
