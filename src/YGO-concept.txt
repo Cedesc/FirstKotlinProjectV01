@@ -28,6 +28,7 @@ Classes:
 
 
 Further:
+    - GUI
     - Ban lists
     - Effects  // todo command pattern?
     - Duel  // todo singleton pattern?
