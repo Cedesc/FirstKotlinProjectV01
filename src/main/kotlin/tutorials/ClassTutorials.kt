@@ -75,7 +75,13 @@ class Joonge(name: String, protected override var height: Double = 1.62): Father
 
     var numberOfArms: Int = 2
         get() = field
-        private set
+        set(value) {
+            field = when {
+                value > 10 -> 10
+                value < 0 -> 0
+                else -> value
+            }
+        }
 
     // Secondary Constructor
     constructor(name: String, height: Double, numberOfArms: Int): this(name, height) {
