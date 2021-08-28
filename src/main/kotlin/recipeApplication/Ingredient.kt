@@ -1,5 +1,5 @@
 package recipeApplication
 
 enum class Ingredient {
-    Egg, Butter
+    Egg, Butter, OliveOil, SunflowerOil,
 }
