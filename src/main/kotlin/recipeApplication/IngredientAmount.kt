@@ -1,6 +1,13 @@
 package recipeApplication
 
-class IngredientAmount(val ingredient: Ingredient, var amount: Int, private val amountStrAddition: String = "") {
+class IngredientAmount(val ingredient: Ingredient, amount: Int, private val amountStrAddition: String = "") {
+
+    var amount: Double = amount.toDouble()
+
+    fun IngredientAmount(val ingredient: Ingredient, amount: Double, amountStrAddition: String = "") {
+
+    }
+
 
     override fun toString(): String {
         return if (amountStrAddition == "")

@@ -16,8 +16,8 @@ class ShowRecipeTest {
 
     @Before
     fun setUp() {
-        ingredientAmount1 = IngredientAmount(Ingr.Egg, 2)
-        ingredientAmount2 = IngredientAmount(Ingr.Butter, 1, "EL")
+        ingredientAmount1 = IngredientAmount(Ingr.Egg, 2.0)
+        ingredientAmount2 = IngredientAmount(Ingr.Butter, 1.0, "EL")
         recipe = Recipe("Scrambled Eggs", "Egg in the pan you know",
             5, 1, arrayListOf(ingredientAmount1, ingredientAmount2),
             arrayListOf(Reqs.Pan), arrayListOf(Tag.Easy, Tag.Appetizer), "n/a")
