@@ -1,8 +1,7 @@
 package recipeApplication
 
-import SavedRecipes
 
-fun main(args: Array<String>) {
+fun main() {
     println("HelloWorld!")
     val savedRecipes: SavedRecipes = SavedRecipes()
 }

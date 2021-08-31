@@ -16,8 +16,8 @@ class ShowRecipeTest {
 
     @Before
     fun setUp() {
-        ingredientAmount1 = IngredientAmount(Ingr.Egg, 2.0)
-        ingredientAmount2 = IngredientAmount(Ingr.Butter, 1.0, "EL")
+        ingredientAmount1 = IngredientAmount(Ingr.Egg, 2)
+        ingredientAmount2 = IngredientAmount(Ingr.Butter, 1, "EL")
         recipe = Recipe("Scrambled Eggs", "Egg in the pan you know",
             5, 1, arrayListOf(ingredientAmount1, ingredientAmount2),
             arrayListOf(Reqs.Pan), arrayListOf(Tag.Easy, Tag.Appetizer), "n/a")
@@ -65,9 +65,9 @@ class ShowRecipeTest {
         assertNotEquals(arrayListOf(ingredientAmount1), obj.ingredientAmountsOriginal)
 
         assertEquals(Ingr.Egg, obj.ingredientAmountsOriginal[0].ingredient)
-        assertEquals(2, obj.ingredientAmountsOriginal[0].amount)
+        assertEquals(2.0, obj.ingredientAmountsOriginal[0].amount, 0.0)
         assertEquals(Ingr.Butter, obj.ingredientAmountsOriginal[1].ingredient)
-        assertEquals(1, obj.ingredientAmountsOriginal[1].amount)
+        assertEquals(1.0, obj.ingredientAmountsOriginal[1].amount, 0.0)
     }
 
     @Test
@@ -75,11 +75,11 @@ class ShowRecipeTest {
         assertEquals(obj.ingredientAmountsOriginal[0].ingredient,
                      obj.ingredientAmountsActual[0].ingredient)
         assertEquals(obj.ingredientAmountsOriginal[0].amount,
-                     obj.ingredientAmountsActual[0].amount * obj.portions)
+                     obj.ingredientAmountsActual[0].amount * obj.portions, 0.0)
         assertEquals(obj.ingredientAmountsOriginal[1].ingredient,
             obj.ingredientAmountsActual[1].ingredient)
         assertEquals(obj.ingredientAmountsOriginal[1].amount,
-            obj.ingredientAmountsActual[1].amount * obj.portions)
+            obj.ingredientAmountsActual[1].amount * obj.portions, 0.0)
     }
 
     @Test
@@ -100,28 +100,28 @@ class ShowRecipeTest {
     @Test
     fun setPortions() {
         assertEquals(1, obj.portions)
-        assertEquals(2, obj.ingredientAmountsActual[0].amount)
-        assertEquals(1, obj.ingredientAmountsActual[1].amount)
+        assertEquals(2.0, obj.ingredientAmountsActual[0].amount, 0.0)
+        assertEquals(1.0, obj.ingredientAmountsActual[1].amount, 0.0)
 
         obj.portions += 1
         assertEquals(2, obj.portions)
-        assertEquals(2 * 2, obj.ingredientAmountsActual[0].amount)
-        assertEquals(1 * 2, obj.ingredientAmountsActual[1].amount)
+        assertEquals(2.0 * 2, obj.ingredientAmountsActual[0].amount, 0.0)
+        assertEquals(1.0 * 2, obj.ingredientAmountsActual[1].amount, 0.0)
 
         obj.portions = -5
         assertEquals(1, obj.portions)
-        assertEquals(2 * 1, obj.ingredientAmountsActual[0].amount)
-        assertEquals(1 * 1, obj.ingredientAmountsActual[1].amount)
+        assertEquals(2.0 * 1, obj.ingredientAmountsActual[0].amount, 0.0)
+        assertEquals(1.0 * 1, obj.ingredientAmountsActual[1].amount, 0.0)
 
         obj.portions = 100
         assertEquals(10, obj.portions)
-        assertEquals(2 * 10, obj.ingredientAmountsActual[0].amount)
-        assertEquals(1 * 10, obj.ingredientAmountsActual[1].amount)
+        assertEquals(2.0 * 10, obj.ingredientAmountsActual[0].amount, 0.0)
+        assertEquals(1.0 * 10, obj.ingredientAmountsActual[1].amount, 0.0)
 
         obj.portions = 5
         assertEquals(5, obj.portions)
-        assertEquals(2 * 5, obj.ingredientAmountsActual[0].amount)
-        assertEquals(1 * 5, obj.ingredientAmountsActual[1].amount)
+        assertEquals(2.0 * 5, obj.ingredientAmountsActual[0].amount, 0.0)
+        assertEquals(1.0 * 5, obj.ingredientAmountsActual[1].amount, 0.0)
     }
 
     @Test

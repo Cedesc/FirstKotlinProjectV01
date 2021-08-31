@@ -14,7 +14,7 @@ class IngredientAmountTest {
     @Before
     fun setUp() {
         ingredientAmount1 = IngredientAmount(Ingredient.Egg, 2)
-        ingredientAmount2 = IngredientAmount(Ingredient.Butter, 1, "EL")
+        ingredientAmount2 = IngredientAmount(Ingredient.Butter, 0.5, "EL")
     }
 
     @After
@@ -24,7 +24,7 @@ class IngredientAmountTest {
     @Test
     fun testToString() {
         assertEquals("2 Egg", ingredientAmount1.toString())
-        assertEquals("1 EL Butter", ingredientAmount2.toString())
+        assertEquals("0.5 EL Butter", ingredientAmount2.toString())
     }
 
     @Test
@@ -35,7 +35,7 @@ class IngredientAmountTest {
 
     @Test
     fun getAmount() {
-        assertEquals(2, ingredientAmount1.amount)
-        assertEquals(1, ingredientAmount2.amount)
+        assertEquals(2.0, ingredientAmount1.amount, 0.0)
+        assertEquals(0.5, ingredientAmount2.amount, 0.0)
     }
 }

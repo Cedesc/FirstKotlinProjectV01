@@ -1,19 +1,24 @@
 package recipeApplication
 
-class IngredientAmount(val ingredient: Ingredient, amount: Int, private val amountStrAddition: String = "") {
+import kotlin.math.roundToInt
 
-    var amount: Double = amount.toDouble()
+class IngredientAmount(val ingredient: Ingredient, var amount: Double, private var amountStrAddition: String = "") {
 
-    fun IngredientAmount(val ingredient: Ingredient, amount: Double, amountStrAddition: String = "") {
-
-    }
+    constructor(ingredient: Ingredient, amount: Int, amountStrAddition: String = ""):
+            this(ingredient, amount.toDouble(), amountStrAddition)
 
 
     override fun toString(): String {
+        // if amount is an Integer, ".0" is removed
+        val amountString: String =
+            if (amount == amount.roundToInt().toDouble())
+                amount.toInt().toString()
+        else amount.toString()
+
         return if (amountStrAddition == "")
-            "$amount $ingredient"
+            "$amountString $ingredient"
         else
-            "$amount $amountStrAddition $ingredient"
+            "$amountString $amountStrAddition $ingredient"
     }
 
     fun copy(): IngredientAmount {
