@@ -25,6 +25,10 @@ class ShowRecipe(recipe: Recipe) {
             }
         }
 
+    init {
+        portions = recipe.recommendedAmount
+    }
+
     private fun copyIngredientAmounts(input: ArrayList<IngredientAmount>): ArrayList<IngredientAmount> {
         val res: ArrayList<IngredientAmount> = ArrayList()
         input.forEach {

@@ -20,7 +20,7 @@ class ShowRecipeTest {
         ingredientAmount2 = IngredientAmount(Ingr.Butter, 1, "EL")
         recipe = Recipe("Scrambled Eggs", "Egg in the pan you know",
             5, 1, arrayListOf(ingredientAmount1, ingredientAmount2),
-            arrayListOf(Reqs.Pan), arrayListOf(Tag.Easy, Tag.Appetizer), "n/a")
+            arrayListOf(Reqs.Pan), arrayListOf(Tag.Easy, Tag.Appetizer), "n/a", 1)
         obj = ShowRecipe(recipe)
     }
 

@@ -7,6 +7,9 @@ class IngredientAmount(val ingredient: Ingredient, var amount: Double, private v
     constructor(ingredient: Ingredient, amount: Int, amountStrAddition: String = ""):
             this(ingredient, amount.toDouble(), amountStrAddition)
 
+    constructor(ingredient: Ingredient, amountStrAddition: String):
+            this(ingredient, 0.0, amountStrAddition)
+
 
     override fun toString(): String {
         // if amount is an Integer, ".0" is removed
@@ -16,9 +19,16 @@ class IngredientAmount(val ingredient: Ingredient, var amount: Double, private v
         else amount.toString()
 
         return if (amountStrAddition == "")
+            // e.g. "5 Egg"
             "$amountString $ingredient"
-        else
-            "$amountString $amountStrAddition $ingredient"
+        else {
+            if (amount == 0.0)
+                // e.g. "some Butter"
+                "$amountStrAddition $ingredient"
+            else
+                // e.g. "100ml VegetableBroth"
+                "$amountString $amountStrAddition $ingredient"
+        }
     }
 
     fun copy(): IngredientAmount {
