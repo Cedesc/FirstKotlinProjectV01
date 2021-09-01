@@ -16,11 +16,11 @@ class ShowRecipeTest {
 
     @Before
     fun setUp() {
-        ingredientAmount1 = IngredientAmount(Ingr.Egg, 2)
-        ingredientAmount2 = IngredientAmount(Ingr.Butter, 1, "EL")
+        ingredientAmount1 = IngredientAmount(Ingr.EGG, 2)
+        ingredientAmount2 = IngredientAmount(Ingr.BUTTER, 1, "EL")
         recipe = Recipe("Scrambled Eggs", "Egg in the pan you know",
             5, 1, arrayListOf(ingredientAmount1, ingredientAmount2),
-            arrayListOf(Reqs.Pan), arrayListOf(Tag.Easy, Tag.Appetizer), "n/a", 1)
+            arrayListOf(Reqs.PAN), arrayListOf(Tag.EASY, Tag.APPETIZER), "n/a", 1)
         obj = ShowRecipe(recipe)
     }
 
@@ -64,9 +64,9 @@ class ShowRecipeTest {
         assertEquals(arrayListOf(ingredientAmount1, ingredientAmount2), obj.ingredientAmountsOriginal)
         assertNotEquals(arrayListOf(ingredientAmount1), obj.ingredientAmountsOriginal)
 
-        assertEquals(Ingr.Egg, obj.ingredientAmountsOriginal[0].ingredient)
+        assertEquals(Ingr.EGG, obj.ingredientAmountsOriginal[0].ingredient)
         assertEquals(2.0, obj.ingredientAmountsOriginal[0].amount, 0.0)
-        assertEquals(Ingr.Butter, obj.ingredientAmountsOriginal[1].ingredient)
+        assertEquals(Ingr.BUTTER, obj.ingredientAmountsOriginal[1].ingredient)
         assertEquals(1.0, obj.ingredientAmountsOriginal[1].amount, 0.0)
     }
 
@@ -84,12 +84,12 @@ class ShowRecipeTest {
 
     @Test
     fun getRequirements() {
-        assertEquals(arrayListOf(Reqs.Pan), obj.requirements)
+        assertEquals(arrayListOf(Reqs.PAN), obj.requirements)
     }
 
     @Test
     fun getTags() {
-        assertEquals(arrayListOf(Tag.Easy, Tag.Appetizer), obj.tags)
+        assertEquals(arrayListOf(Tag.EASY, Tag.APPETIZER), obj.tags)
     }
 
     @Test
@@ -129,10 +129,10 @@ class ShowRecipeTest {
         assertEquals("Name: Scrambled Eggs \n" +
                 "Instruction: Egg in the pan you know \n" +
                 "Total Time: 6 min  Working Time: 5 min  Resting Time: 1 min \n" +
-                "Requirements: [Pan] \n" +
-                "Tags: [Easy, Appetizer] \n" +
+                "Requirements: [pan] \n" +
+                "Tags: [easy, appetizer] \n" +
                 "Portions: 1 \n" +
-                "Ingredients: [2 Egg, 1 EL Butter]", obj.toString())
+                "Ingredients: [2 Egg(s), 1 EL Butter]", obj.toString())
     }
 
 }
