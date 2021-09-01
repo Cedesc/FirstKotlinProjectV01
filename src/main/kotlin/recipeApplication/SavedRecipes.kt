@@ -12,8 +12,8 @@ class SavedRecipes {
         5, 1,
         arrayListOf(ingredientAmount01A, ingredientAmount01B),
         arrayListOf(Requirement.Pan),
-        arrayListOf(Tag.Easy, Tag.Appetizer),
-        "n/a")
+        arrayListOf(Tag.Appetizer, Tag.Easy),
+        "n/a", 1)
 
 
     private val ingredientAmount02A: IngredientAmount = IngredientAmount(Ingr.Onion, 1)
@@ -32,14 +32,27 @@ class SavedRecipes {
         arrayListOf(ingredientAmount02A, ingredientAmount02B, ingredientAmount02C, ingredientAmount02D,
             ingredientAmount02E, ingredientAmount02F),
         arrayListOf(Requirement.Pan),
-        arrayListOf(Tag.Easy, Tag.Meal),
+        arrayListOf(Tag.Meal, Tag.Easy),
         "n/a", 2)
 
 
-//    val ingredientAmount03A: IngredientAmount = IngredientAmount(Ingr.Tortellini, 2, "Pck.")
-//    val ingredientAmount03B: IngredientAmount = IngredientAmount(Ingr.Champignons, 400, "g")
-//    val ingredientAmount03C: IngredientAmount = IngredientAmount(
-//    val ingredientAmount03D: IngredientAmount = IngredientAmount(
-//    val ingredientAmount03E: IngredientAmount = IngredientAmount(
-//    val ingredientAmount03F: IngredientAmount = IngredientAmount(
+    private val ingredientAmount03A: IngredientAmount = IngredientAmount(Ingr.Tortellini, 2, "Pck.")
+    private val ingredientAmount03B: IngredientAmount = IngredientAmount(Ingr.Champignons, 400, "g")
+    private val ingredientAmount03C: IngredientAmount = IngredientAmount(Ingr.CheeseGrated, 250, "g")
+    private val ingredientAmount03D: IngredientAmount = IngredientAmount(Ingr.Onion, 2)
+    private val ingredientAmount03E: IngredientAmount = IngredientAmount(Ingr.TomatoesStrained, 1, "Pck.")
+    private val ingredientAmount03F: IngredientAmount = IngredientAmount(Ingr.WhippedCream, 1, "Pck.")
+    val recipe03: Recipe = Recipe("Tortellini Casserole",
+        "Cook the Tortellini. Cut the onions and clean the mushrooms. \n" +
+                "Saute the onions. Add the cleaned mushrooms and fry them for about 5 minutes. " +
+                "Add the whipped cream and the strained tomatoes. Season it. Let it boil. \n" +
+                "Add the Tortellini to a casserole dish, then pour the sauce over it. " +
+                "Then sprinkle over the grated cheese. \n" +
+                "Bake for approx 15min at 200 degrees.",
+        25, 15,
+        arrayListOf(ingredientAmount03A, ingredientAmount03B, ingredientAmount03C, ingredientAmount03D,
+            ingredientAmount03E, ingredientAmount03F),
+        arrayListOf(Requirement.Pan, Requirement.Pot, Requirement.Oven, Requirement.CasseroleDish),
+        arrayListOf(Tag.Meal, Tag.Durable),
+        "n/a", 4)
 }
