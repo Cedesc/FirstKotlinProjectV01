@@ -12,7 +12,28 @@ enum class Ingredient {
     CHAMPIGNONS {override fun toString(): String = "Champignons"},
     CHEESE_GRATED {override fun toString(): String = "Grated Cheese"},
     TOMATOES_STRAINED {override fun toString(): String = "Strained Tomatoes"},
-    WHIPPED_CREAM {override fun toString(): String = "Whipped Cream"}
+    TOMATOES_CHOPPED {override fun toString(): String = "Chopped Tomatoes"},
+    WHIPPED_CREAM {override fun toString(): String = "Whipped Cream"},
+    PAPRIKA {override fun toString(): String = "Paprika"},
+    TOMATO {override fun toString(): String = "Tomato(es)"},
+    BRUNCH_PAPRIKA_HOT_PEPPERS {override fun toString(): String = "Brunch (Paprika Peperoni)"},
+    CUCUMBER_WATER {override fun toString(): String = "Cucumber Water"},
+    POTATO {override fun toString(): String = "Potato(es)"},
+    KOHLRABI {override fun toString(): String = "Kohlrabi"},
+    MARGARINE {override fun toString(): String = "Margarine"},
+    MILK {override fun toString(): String = "Milk"},
+    FLOUR {override fun toString(): String = "Flour"},
+    GARLIC_CLOVE {override fun toString(): String = "Garlic Clove(s)"},
+    TOMATO_PASTE {override fun toString(): String = "Tomato Paste"},
+    PARMESAN {override fun toString(): String = "Parmesan"},
+    PASTA {override fun toString(): String = "Pasta"},
+    LEEK {override fun toString(): String = "Leeks"},
+    CHIVES {override fun toString(): String = "Chives"},
+    SPINACH_CREAMED {override fun toString(): String = "Creamed Spinach"},
+    MOZZARELLA {override fun toString(): String = "Mozzarella"},
+    CAULIFLOWER {override fun toString(): String = "Cauliflower"},
+    BROCCOLI {override fun toString(): String = "Broccoli"},
+
 }
 
 /*
@@ -21,4 +42,7 @@ VegetableBroth - Gemüsebrühe
 CheeseGrated - geriebener Käse
 TomatoesStrained - passierte Tomaten
 WhippedCream - Schlagsahne
+Flour - Mehl
+Cauliflower - Blumenkohl
+Chives - Schnittlauch
  */

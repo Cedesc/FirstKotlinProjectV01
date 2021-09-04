@@ -6,3 +6,7 @@ enum class Requirement {
     OVEN {override fun toString(): String = "oven"},
     CASSEROLE_DISH {override fun toString(): String = "casserole dish"}
 }
+
+/*
+Casserole Dish - Auflaufform
+ */
