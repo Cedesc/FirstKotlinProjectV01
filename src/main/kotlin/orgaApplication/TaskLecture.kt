@@ -1,0 +1,4 @@
+package orgaApplication
+
+class TaskLecture {
+}
