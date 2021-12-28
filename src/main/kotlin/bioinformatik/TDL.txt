@@ -1,0 +1,17 @@
+
+Input
+    k-mers: Array<String>
+Output
+    Superstring: String
+
+Hamiltonian Cycle
+    (0. build 3-mers)
+    1. build graph -- CHECK
+    2. find hamiltonian cycle  -- CHECK
+todo automatically calculation of the edges
+
+Eulerian Cycle
+    (0. build 3-mers)
+    1. build 2-mers out of 3-mers
+    2. build graph
+    3. find eulerian cycle

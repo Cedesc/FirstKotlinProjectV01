@@ -32,13 +32,18 @@ class GraphHamiltonianCycle(val nodes: Array<NodeHamiltonianCycle>) {
     }
 
     /**
-     * Returns a Hamiltonian Cycle as a String of the k-mers or null if no Hamiltonian Cycle exist.
+     * Returns a Hamiltonian Cycle as a String of the k-mers or null if no Hamiltonian Cycle exists.
      */
     fun findHamiltonianCycle(): String? {
 
         val potentialHamiltonianCycle: String = findPotentialHamiltonianCycle()
 
-        if (potentialHamiltonianCycle.length == numberOfNodes() * 4 + 3) // todo generalize for k-mers instead of 3-mers
+//        val k: Int = 6  // todo generalize for k-mers instead of 3-mers
+//        if (potentialHamiltonianCycle.length == numberOfNodes() * k + k-1)
+//            return potentialHamiltonianCycle
+
+        if (nodes.all { potentialHamiltonianCycle.contains(it.k_mer) }
+            && potentialHamiltonianCycle.endsWith(nodes[0].k_mer))
             return potentialHamiltonianCycle
 
         return null
@@ -63,7 +68,7 @@ class GraphHamiltonianCycle(val nodes: Array<NodeHamiltonianCycle>) {
 
         // for all adjacent not visited nodes calculate all potential cycles recursively and add them to cycleCandidates
         for (adjacentNode: NodeHamiltonianCycle in currentNode.outgoingEdges) {
-            if (adjacentNode !in visitedNodes) {
+            if (adjacentNode !in visitedNodes && adjacentNode != currentNode) {
                 cycleCandidates.add(
                     currentNode.k_mer + " " + findPotentialHamiltonianCycle(adjacentNode,
                                                                             visitedNodes + adjacentNode,
@@ -94,7 +99,7 @@ class GraphHamiltonianCycle(val nodes: Array<NodeHamiltonianCycle>) {
  *
  * Every Node stores its outgoing edges and his k-mer.
  */
-class NodeHamiltonianCycle(val k_mer: String, var outgoingEdges: Array<NodeHamiltonianCycle> = arrayOf()) {
+class NodeHamiltonianCycle(val k_mer: String, var outgoingEdges: List<NodeHamiltonianCycle> = listOf()) {
 
     /**
      * Overrides toString() to return the k-mer and the outgoing edges of the node.
@@ -118,12 +123,35 @@ class NodeHamiltonianCycle(val k_mer: String, var outgoingEdges: Array<NodeHamil
 }
 
 
+/**
+ * Returns a complete graph of arbitrary size.
+ */
+fun createCompleteHamiltonianGraph(size: Int): GraphHamiltonianCycle {
 
-fun main(args: Array<String>) {
+    // create Array filled with null
+    val newNodes: Array<NodeHamiltonianCycle?> = Array(size + 1) {null}
 
-    println("Hello World!\n")
+    // fill the array with nodes
+    for (i in 0..size) {
+        // for this task, it's not important how long the k-mers are or if there are duplicates
+        newNodes[i] = NodeHamiltonianCycle("Node $i")
+    }
 
-    // Example of the paper
+    // cast the nodes of the array to a not nullable type
+    val resultingNodes: List<NodeHamiltonianCycle> = newNodes.map { i -> i!! }
+
+    // create outgoing edges to every other node except the node itself
+    for (nodeIndex in resultingNodes.indices)
+        resultingNodes[nodeIndex].outgoingEdges = resultingNodes - resultingNodes[nodeIndex]
+
+    return GraphHamiltonianCycle(resultingNodes.shuffled().toTypedArray())
+}
+
+
+/**
+ * Returns the Graph of the 3-mers from the paper.
+ */
+fun createHamiltonianGraphFromThePaper(): GraphHamiltonianCycle {
 
     val firstNode: NodeHamiltonianCycle = NodeHamiltonianCycle("ATG")
     val secondNode: NodeHamiltonianCycle = NodeHamiltonianCycle("TGG")
@@ -136,90 +164,49 @@ fun main(args: Array<String>) {
     val ninthNode: NodeHamiltonianCycle = NodeHamiltonianCycle("CAA")
     val tenthNode: NodeHamiltonianCycle = NodeHamiltonianCycle("AAT")
 
-    firstNode.outgoingEdges = arrayOf(secondNode, seventhNode)
-    secondNode.outgoingEdges = arrayOf(thirdNode)
-    thirdNode.outgoingEdges = arrayOf(fourthNode, eighthNode)
-    fourthNode.outgoingEdges = arrayOf(fifthNode)
-    fifthNode.outgoingEdges = arrayOf(sixthNode)
-    sixthNode.outgoingEdges = arrayOf(seventhNode, secondNode)
-    seventhNode.outgoingEdges = arrayOf(eighthNode, fourthNode)
-    eighthNode.outgoingEdges = arrayOf(ninthNode)
-    ninthNode.outgoingEdges = arrayOf(tenthNode)
-    tenthNode.outgoingEdges = arrayOf(firstNode)
-
+    firstNode.outgoingEdges = listOf(secondNode, seventhNode)
+    secondNode.outgoingEdges = listOf(thirdNode)
+    thirdNode.outgoingEdges = listOf(fourthNode, eighthNode)
+    fourthNode.outgoingEdges = listOf(fifthNode)
+    fifthNode.outgoingEdges = listOf(sixthNode)
+    sixthNode.outgoingEdges = listOf(seventhNode, secondNode)
+    seventhNode.outgoingEdges = listOf(eighthNode, fourthNode)
+    eighthNode.outgoingEdges = listOf(ninthNode)
+    ninthNode.outgoingEdges = listOf(tenthNode)
+    tenthNode.outgoingEdges = listOf(firstNode)
 
     val nodeArr: Array<NodeHamiltonianCycle> = arrayOf(firstNode, secondNode, thirdNode, fourthNode,
         fifthNode, sixthNode, seventhNode,
         eighthNode, ninthNode, tenthNode)
     nodeArr.shuffle()
 
-
-    val graph: GraphHamiltonianCycle = GraphHamiltonianCycle(nodeArr)
-    println("\n" + graph)
-
-
-    println(graph.findHamiltonianCycle())
-    graph.nodes.shuffle()
-    println(graph.findHamiltonianCycle())
-    graph.nodes.shuffle()
-    println(graph.findHamiltonianCycle())
-    graph.nodes.shuffle()
-    println(graph.findHamiltonianCycle())
-    graph.nodes.shuffle()
-    println(graph.findHamiltonianCycle())
-
-
-    // TGC GCG CGT GTG TGG GGC GCA CAA AAT ATG TGC
-    // GGC GCA CAA AAT ATG TGC GCG CGT GTG TGG GGC
-    // GCG CGT GTG TGG GGC GCA CAA AAT ATG TGC GCG
-
-
-
-    // Bigger examples todo put this following stuff in extra function
-
-    val size: Int = 11
-
-    val moreNodes: Array<NodeHamiltonianCycle?> = Array(size + 1) {null}
-// val tenthNode: NodeHamiltonianCycle = NodeHamiltonianCycle("AAT")
-//
-//    firstNode.outgoingEdges = arrayOf(secondNode, seventhNode)
-
-    for (i in 0..size) {
-        moreNodes[i] = NodeHamiltonianCycle("AAA")
-    }
-
-    moreNodes.map { i -> i!! }
-    val reallyMoreNodes: Array<NodeHamiltonianCycle> = moreNodes.map { i -> i!! }.toTypedArray()
-
-    for (node in moreNodes) {
-        node!!.outgoingEdges = Array(size) {i -> moreNodes[i]!!}
-    }
-
-    for (i in moreNodes) {
-        println(i)
-    }
-
-    val graph2: GraphHamiltonianCycle = GraphHamiltonianCycle(reallyMoreNodes)
-    graph2.findHamiltonianCycle()
-
+    return GraphHamiltonianCycle(nodeArr)
 }
 
 
-/*
-Input
-    k-mers: Array<String>
-Output
-    Superstring: String
 
-Hamiltonian Cycle
-    (0. build 3-mers)
-    1. build graph -- CHECK
-    2. find hamiltonian cycle  -- CHECK
-todo automatically calculation of the edges
+fun main(args: Array<String>) {
 
-Eulerian Cycle
-    (0. build 3-mers)
-    1. build 2-mers out of 3-mers
-    2. build graph
-    3. find eulerian cycle
- */
+    println("Hello World!\n")
+
+    // Example of the paper
+
+    val graph1: GraphHamiltonianCycle = createHamiltonianGraphFromThePaper()
+//    println("\n" + graph)
+
+    for (i in 0..5) {
+        graph1.nodes.shuffle()
+        println(graph1.findHamiltonianCycle())
+    }
+
+
+    // Examples of arbitrary size
+
+    val size: Int = 10
+    val graph2: GraphHamiltonianCycle = createCompleteHamiltonianGraph(size)
+//    println("\n\n$g")
+    println("\nHamilton Cycle of a complete graph of size $size: ")
+    println("  ${graph2.findHamiltonianCycle()}")
+
+}
+
