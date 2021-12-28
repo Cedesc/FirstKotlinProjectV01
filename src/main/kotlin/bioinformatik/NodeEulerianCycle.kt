@@ -1,0 +1,4 @@
+package bioinformatik
+
+class NodeEulerianCycle {
+}
