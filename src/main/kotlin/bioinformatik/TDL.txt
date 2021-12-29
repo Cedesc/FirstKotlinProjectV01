@@ -15,3 +15,7 @@ Eulerian Cycle
     1. build 2-mers out of 3-mers
     2. build graph
     3. find eulerian cycle
+
+
+Now:
+    - create Ingoing (?) Edges for NodeEulerianCycle, which generates automatically if the outgoing edges are set

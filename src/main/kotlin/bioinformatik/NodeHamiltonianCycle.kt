@@ -1,7 +1,7 @@
 package bioinformatik
 
 /**
- * Represents a node for the graph built to find a Hamiltonian Circle.
+ * Represents a node for the graph built to find a Hamiltonian Cycle.
  *
  * Every Node stores its outgoing edges and his k-mer.
  */

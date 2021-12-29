@@ -8,8 +8,11 @@ package bioinformatik
 class GraphHamiltonianCycle(val nodes: Array<NodeHamiltonianCycle>) {
 
     init {
-        if (! allEdgesPointsToANode())
+        if (! allEdgesPointsToANode()) {
+            println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             println("WARNING! NOT ALL EDGES POINT TO A NODE OF THE PASSED NODES!")
+            println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        }
     }
 
     /**

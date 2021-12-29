@@ -25,7 +25,7 @@ fun createCompleteHamiltonianGraph(size: Int): GraphHamiltonianCycle {
 }
 
 /**
- * Returns the Graph of the 3-mers from the paper.
+ * Returns the Graph of the 3-mers for Hamiltonian Cycle from the paper.
  */
 fun createHamiltonianGraphFromThePaper(): GraphHamiltonianCycle {
 
@@ -59,29 +59,70 @@ fun createHamiltonianGraphFromThePaper(): GraphHamiltonianCycle {
     return GraphHamiltonianCycle(nodeArr)
 }
 
+/**
+ * Returns the Graph of the 2-mers for Eulerian Cycle from the paper.
+ */
+fun createEulerianGraphFromThePaper(): GraphEulerianCycle {
+    val firstNode: NodeEulerianCycle = NodeEulerianCycle("AT")
+    val secondNode: NodeEulerianCycle = NodeEulerianCycle("TG")
+    val thirdNode: NodeEulerianCycle = NodeEulerianCycle("GG")
+    val fourthNode: NodeEulerianCycle = NodeEulerianCycle("GC")
+    val fifthNode: NodeEulerianCycle = NodeEulerianCycle("CG")
+    val sixthNode: NodeEulerianCycle = NodeEulerianCycle("GT")
+    val seventhNode: NodeEulerianCycle = NodeEulerianCycle("CA")
+    val eighthNode: NodeEulerianCycle = NodeEulerianCycle("AA")
+
+    firstNode.outgoingEdges = listOf(secondNode)
+    secondNode.outgoingEdges = listOf(thirdNode, fourthNode)
+    thirdNode.outgoingEdges = listOf(fourthNode)
+    fourthNode.outgoingEdges = listOf(fifthNode, seventhNode)
+    fifthNode.outgoingEdges = listOf(sixthNode)
+    sixthNode.outgoingEdges = listOf(secondNode)
+    seventhNode.outgoingEdges = listOf(eighthNode)
+    eighthNode.outgoingEdges = listOf(firstNode)
+
+    val nodeArr: Array<NodeEulerianCycle> = arrayOf(firstNode, secondNode, thirdNode, fourthNode,
+        fifthNode, sixthNode, seventhNode, eighthNode)
+    nodeArr.shuffle()
+
+    return GraphEulerianCycle(nodeArr)
+}
+
 
 fun main(args: Array<String>) {
 
-    println("Hello World!\n")
+    println("Hello World!\n\n")
 
-    // Example of the paper
 
-    val graph1: GraphHamiltonianCycle = createHamiltonianGraphFromThePaper()
-//    println("\n" + graph)
+    // Hamiltonian Cycle
+    println("-----------------------HAMILTONIAN-----------------------\n")
 
+    // Example from the paper
+    val hGraph1: GraphHamiltonianCycle = createHamiltonianGraphFromThePaper()
+//    println("\n$hGraph1)
     for (i in 0..5) {
-        graph1.nodes.shuffle()
-        println(graph1.findHamiltonianCycle())
+        hGraph1.nodes.shuffle()
+        println("Hamiltonian Cycle: ${hGraph1.findHamiltonianCycle()}")
     }
 
-
     // Examples of arbitrary size
-
-    val size: Int = 8
-    val graph2: GraphHamiltonianCycle = createCompleteHamiltonianGraph(size)
+    val size: Int = 6
+    val hGraph2: GraphHamiltonianCycle = createCompleteHamiltonianGraph(size)
 //    println("\n\n$g")
     println("\nHamilton Cycle of a complete graph of size $size: ")
-    println("  ${graph2.findHamiltonianCycle()}")
+    println("  ${hGraph2.findHamiltonianCycle()}\n\n")
+
+
+    // Eulerian Cycle
+    println("------------------------EULERIAN------------------------\n")
+
+    // Example from the paper
+    val eGraph1: GraphEulerianCycle = createEulerianGraphFromThePaper()
+    println("$eGraph1")
+//    for (i in 0..5) {
+//        eGraph1.nodes.shuffle()
+//        println("Eulerian Cycle: ${eGraph1.findEulerianCycle()}")
+//    }
 
 }
 
