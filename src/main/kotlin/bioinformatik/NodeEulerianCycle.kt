@@ -5,7 +5,18 @@ package bioinformatik
  *
  * Every Node stores its outgoing edges and his k-mer.
  */
-class NodeEulerianCycle(val k_mer: String, var outgoingEdges: List<NodeEulerianCycle> = listOf()) {
+class NodeEulerianCycle(val k_mer: String, outgoingEdges: List<NodeEulerianCycle> = listOf()) {
+
+    var incomingEdges: List<NodeEulerianCycle> = listOf()
+
+    // for every outgoing edge, there is an incoming edge to the other node
+    var outgoingEdges: List<NodeEulerianCycle> = outgoingEdges
+        set(value) {
+            field = value
+            for (node: NodeEulerianCycle in outgoingEdges) {
+                node.incomingEdges += this
+            }
+        }
 
     /**
      * Overrides toString() to return the k-mer and the outgoing edges of the node.
@@ -13,7 +24,8 @@ class NodeEulerianCycle(val k_mer: String, var outgoingEdges: List<NodeEulerianC
     override fun toString(): String {
 
         return "k-mer: $k_mer \n" +
-                "    Outgoing Edges: ${outgoingEdgesToString()}\n"
+                "    Outgoing Edges: ${outgoingEdgesToString()}\n" +
+                "    Incoming Edges: ${incomingEdgesToString()}\n"
     }
 
     /**
@@ -26,5 +38,15 @@ class NodeEulerianCycle(val k_mer: String, var outgoingEdges: List<NodeEulerianC
         }
         return stringOfOutgoingEdges
     }
+
+    /**
+     * Returns a string of all k-mers of the incoming edges of this node.
+     */
+    private fun incomingEdgesToString(): String {
+        var stringOfIncomingEdges: String = ""
+        for (adjacentNode: NodeEulerianCycle in incomingEdges) {
+            stringOfIncomingEdges += adjacentNode.k_mer + " "
+        }
+        return stringOfIncomingEdges
+    }
 }
-// todo same code as NodeHamiltonianCycle. Merge the two together?

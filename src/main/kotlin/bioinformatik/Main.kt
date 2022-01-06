@@ -123,6 +123,11 @@ fun main(args: Array<String>) {
 //        eGraph1.nodes.shuffle()
 //        println("Eulerian Cycle: ${eGraph1.findEulerianCycle()}")
 //    }
+    println("Is eGraph1 balanced? (Should be true)   ${eGraph1.isBalanced()}")
+    println("${eGraph1.findFullEulerianSubCycles()}")
+    // [GG  GC  CG  GT  TG  GG, AT  TG  GC  CA  AA  AT]
+    // [CA  AA  AT  TG  GG  GC  CG  GT  TG  GC  CA]
+    // [GT  TG  GG  GC  CG  GT, CA  AA  AT  TG  GC  CA]
 
 }
 
