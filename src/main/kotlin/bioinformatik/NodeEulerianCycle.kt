@@ -32,7 +32,7 @@ class NodeEulerianCycle(val k_mer: String, outgoingEdges: List<NodeEulerianCycle
      * Returns a string of all k-mers of the outgoing edges of this node.
      */
     private fun outgoingEdgesToString(): String {
-        var stringOfOutgoingEdges: String = ""
+        var stringOfOutgoingEdges = ""
         for (adjacentNode: NodeEulerianCycle in outgoingEdges) {
             stringOfOutgoingEdges += adjacentNode.k_mer + " "
         }
@@ -43,7 +43,7 @@ class NodeEulerianCycle(val k_mer: String, outgoingEdges: List<NodeEulerianCycle
      * Returns a string of all k-mers of the incoming edges of this node.
      */
     private fun incomingEdgesToString(): String {
-        var stringOfIncomingEdges: String = ""
+        var stringOfIncomingEdges = ""
         for (adjacentNode: NodeEulerianCycle in incomingEdges) {
             stringOfIncomingEdges += adjacentNode.k_mer + " "
         }

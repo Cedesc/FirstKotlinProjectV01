@@ -27,13 +27,6 @@ class GraphHamiltonianCycle(val nodes: Array<NodeHamiltonianCycle>) {
     }
 
     /**
-     * Returns the number of contained nodes.
-     */
-    private fun numberOfNodes(): Int {
-        return nodes.size
-    }
-
-    /**
      * Returns a Hamiltonian Cycle as a String of the k-mers or null if no Hamiltonian Cycle exists.
      */
     fun findHamiltonianCycle(): String? {
@@ -55,7 +48,7 @@ class GraphHamiltonianCycle(val nodes: Array<NodeHamiltonianCycle>) {
                                               visitedNodes: Array<NodeHamiltonianCycle> = arrayOf(),
                                               origin: NodeHamiltonianCycle = nodes[0]): String {
 
-        // stop if the current node is the origin node and its not the first function call
+        // stop if the current node is the origin node, and it's not the first function call
         if (currentNode == origin && visitedNodes.isNotEmpty())
             return currentNode.k_mer
 
@@ -69,7 +62,7 @@ class GraphHamiltonianCycle(val nodes: Array<NodeHamiltonianCycle>) {
         for (adjacentNode: NodeHamiltonianCycle in currentNode.outgoingEdges) {
             if (adjacentNode !in visitedNodes && adjacentNode != currentNode) {
                 cycleCandidates.add(
-                    currentNode.k_mer + " " + findPotentialHamiltonianCycle(adjacentNode,
+                    currentNode.k_mer + "  " + findPotentialHamiltonianCycle(adjacentNode,
                                                                             visitedNodes + adjacentNode,
                                                                             origin))
             }
@@ -84,7 +77,7 @@ class GraphHamiltonianCycle(val nodes: Array<NodeHamiltonianCycle>) {
      * Overrides toString() to return k-mer and outgoing edges of all included nodes.
      */
     override fun toString(): String {
-        var stringOutput: String = ""
+        var stringOutput = ""
         for (node: NodeHamiltonianCycle in nodes) {
             stringOutput += "  $node"
         }

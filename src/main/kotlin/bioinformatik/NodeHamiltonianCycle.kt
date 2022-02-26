@@ -20,7 +20,7 @@ class NodeHamiltonianCycle(val k_mer: String, var outgoingEdges: List<NodeHamilt
      * Returns a string of all k-mers of the outgoing edges of this node.
      */
     private fun outgoingEdgesToString(): String {
-        var stringOfOutgoingEdges: String = ""
+        var stringOfOutgoingEdges = ""
         for (adjacentNode: NodeHamiltonianCycle in outgoingEdges) {
             stringOfOutgoingEdges += adjacentNode.k_mer + " "
         }
