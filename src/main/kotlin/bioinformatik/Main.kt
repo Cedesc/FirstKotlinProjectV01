@@ -25,11 +25,14 @@ fun main(args: Array<String>) {
     }
 
     // complete graph of arbitrary size
-    val size = 6      // size 10 needs few seconds
+    val size = 9      // size 11 needs few seconds, size 12 need about 46 seconds
     val hGraphComplete: GraphHamiltonianCycle = createCompleteHamiltonianGraph(size)
     println("\nHamilton Cycle of a complete graph of size $size: ")
-    println("  ${hGraphComplete.findHamiltonianCycle()}\n\n")
-
+    // timer
+    val startTimer1 = System.currentTimeMillis()
+    println("  ${hGraphComplete.findHamiltonianCycle()}")
+    println("Elapsed Time: ${(System.currentTimeMillis() - startTimer1).toDouble() / 1000}s")
+    println("\n\n")
 
 
     // Eulerian Cycle
@@ -60,7 +63,10 @@ fun main(args: Array<String>) {
 
     // print Eulerian Cycle
     println("Eulerian Cycle")
+    // timer
+    val startTimer2 = System.currentTimeMillis()
     println("RESULT:       ${eGraph.findEulerianCycle(printSteps = true)}")
+    println("Elapsed Time: ${(System.currentTimeMillis() - startTimer2).toDouble() / 1000}s")
 
 }
 
