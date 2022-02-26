@@ -12,10 +12,10 @@ class NodeEulerianCycle(val k_mer: String, outgoingEdges: List<NodeEulerianCycle
     // for every outgoing edge, there is an incoming edge to the other node
     var outgoingEdges: List<NodeEulerianCycle> = outgoingEdges
         set(value) {
-            field = value
-            for (node: NodeEulerianCycle in outgoingEdges) {
+            for (node: NodeEulerianCycle in value- field.toSet()) {
                 node.incomingEdges += this
             }
+            field = value
         }
 
     /**

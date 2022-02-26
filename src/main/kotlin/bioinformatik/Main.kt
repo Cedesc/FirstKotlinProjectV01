@@ -6,10 +6,10 @@ package bioinformatik
 fun createCompleteHamiltonianGraph(size: Int): GraphHamiltonianCycle {
 
     // create Array filled with null
-    val newNodes: Array<NodeHamiltonianCycle?> = Array(size + 1) {null}
+    val newNodes: Array<NodeHamiltonianCycle?> = Array(size) {null}
 
     // fill the array with nodes
-    for (i in 0..size) {
+    for (i in 0 until size) {
         // for this task, it's not important how long the k-mers are or if there are duplicates
         newNodes[i] = NodeHamiltonianCycle("Node $i")
     }
@@ -22,6 +22,81 @@ fun createCompleteHamiltonianGraph(size: Int): GraphHamiltonianCycle {
         resultingNodes[nodeIndex].outgoingEdges = resultingNodes - resultingNodes[nodeIndex]
 
     return GraphHamiltonianCycle(resultingNodes.shuffled().toTypedArray())
+}
+
+/**
+ *
+ */
+fun createCompleteEulerianGraph(size: Int): GraphEulerianCycle {
+
+    // create Array filled with null
+    val newNodes: Array<NodeEulerianCycle?> = Array(size) {null}
+
+    // fill the array with nodes
+    for (i in 0 until size) {
+        // for this task, it's not important how long the k-mers are or if there are duplicates
+        newNodes[i] = NodeEulerianCycle("Node $i")
+    }
+
+    // cast the nodes of the array to a not nullable type
+    val resultingNodes: List<NodeEulerianCycle> = newNodes.map { i -> i!! }
+
+    // create outgoing edges to every other node except the node itself
+    for (nodeIndex in resultingNodes.indices)
+        resultingNodes[nodeIndex].outgoingEdges = resultingNodes - resultingNodes[nodeIndex]
+
+    return GraphEulerianCycle(resultingNodes.shuffled().toTypedArray())
+}
+
+/**
+ *
+ */
+fun createDoublyLinkedListEulerianGraph(size: Int): GraphEulerianCycle {
+
+    // create Array filled with null
+    val newNodes: Array<NodeEulerianCycle?> = Array(size) {null}
+
+    // fill the array with nodes
+    for (i in 0 until size) {
+        // for this task, it's not important how long the k-mers are or if there are duplicates
+        newNodes[i] = NodeEulerianCycle("Node $i")
+    }
+
+    // cast the nodes of the array to a not nullable type
+    val resultingNodes: List<NodeEulerianCycle> = newNodes.map { i -> i!! }
+
+    // for each node except the last node:
+    // create outgoing edge to the next node and outgoing edge from this node to the current node
+    for (nodeIndex in 0 .. resultingNodes.size - 2) {
+        resultingNodes[nodeIndex].outgoingEdges += listOf(resultingNodes[nodeIndex + 1])
+        resultingNodes[nodeIndex + 1].outgoingEdges += listOf(resultingNodes[nodeIndex])
+    }
+
+    return GraphEulerianCycle(resultingNodes.shuffled().toTypedArray())
+}
+
+/**
+ *
+ */
+fun createEulerianGraphWithFourSubCycles(): GraphEulerianCycle {
+    val firstNode: NodeEulerianCycle = NodeEulerianCycle("1")
+    val secondNode: NodeEulerianCycle = NodeEulerianCycle("0")
+    val thirdNode: NodeEulerianCycle = NodeEulerianCycle("3")
+    val fourthNode: NodeEulerianCycle = NodeEulerianCycle("2")
+    val fifthNode: NodeEulerianCycle = NodeEulerianCycle("4")
+    val sixthNode: NodeEulerianCycle = NodeEulerianCycle("5")
+
+    firstNode.outgoingEdges = listOf(secondNode, thirdNode, fourthNode, fifthNode, sixthNode)
+    secondNode.outgoingEdges = listOf(firstNode, thirdNode, fourthNode, fifthNode, sixthNode)
+    thirdNode.outgoingEdges = listOf(firstNode, secondNode, fourthNode, fifthNode, sixthNode)
+    fourthNode.outgoingEdges = listOf(firstNode, secondNode, thirdNode, fifthNode, sixthNode)
+    fifthNode.outgoingEdges = listOf(firstNode, secondNode, thirdNode, fourthNode, sixthNode)
+    sixthNode.outgoingEdges = listOf(firstNode, secondNode, thirdNode, fourthNode, fifthNode)
+
+    val nodeArr: Array<NodeEulerianCycle> = arrayOf(firstNode, secondNode, thirdNode, fourthNode,
+        fifthNode, sixthNode)
+
+    return GraphEulerianCycle(nodeArr)
 }
 
 /**
@@ -83,7 +158,34 @@ fun createEulerianGraphFromThePaper(): GraphEulerianCycle {
 
     val nodeArr: Array<NodeEulerianCycle> = arrayOf(firstNode, secondNode, thirdNode, fourthNode,
         fifthNode, sixthNode, seventhNode, eighthNode)
-    nodeArr.shuffle()
+
+    return GraphEulerianCycle(nodeArr)
+}
+
+/**
+ * Returns the Graph of the 2-mers for Eulerian Cycle from the paper.
+ */
+fun createEulerianGraphFromThePaper_inDifferentOrder(): GraphEulerianCycle {
+    val firstNode: NodeEulerianCycle = NodeEulerianCycle("AT")
+    val secondNode: NodeEulerianCycle = NodeEulerianCycle("TG")
+    val thirdNode: NodeEulerianCycle = NodeEulerianCycle("GG")
+    val fourthNode: NodeEulerianCycle = NodeEulerianCycle("GC")
+    val fifthNode: NodeEulerianCycle = NodeEulerianCycle("CG")
+    val sixthNode: NodeEulerianCycle = NodeEulerianCycle("GT")
+    val seventhNode: NodeEulerianCycle = NodeEulerianCycle("CA")
+    val eighthNode: NodeEulerianCycle = NodeEulerianCycle("AA")
+
+    firstNode.outgoingEdges = listOf(secondNode)
+    secondNode.outgoingEdges = listOf(thirdNode, fourthNode)
+    thirdNode.outgoingEdges = listOf(fourthNode)
+    fourthNode.outgoingEdges = listOf(fifthNode, seventhNode)
+    fifthNode.outgoingEdges = listOf(sixthNode)
+    sixthNode.outgoingEdges = listOf(secondNode)
+    seventhNode.outgoingEdges = listOf(eighthNode)
+    eighthNode.outgoingEdges = listOf(firstNode)
+
+    val nodeArr: Array<NodeEulerianCycle> = arrayOf(thirdNode, fourthNode, fifthNode, sixthNode,
+        secondNode, firstNode, seventhNode, eighthNode)
 
     return GraphEulerianCycle(nodeArr)
 }
@@ -105,8 +207,8 @@ fun main(args: Array<String>) {
         println("Hamiltonian Cycle: ${hGraph1.findHamiltonianCycle()}")
     }
 
-    // Examples of arbitrary size
-    val size: Int = 6
+    // examples of arbitrary size
+    val size: Int = 6      // 10 needs few seconds
     val hGraph2: GraphHamiltonianCycle = createCompleteHamiltonianGraph(size)
 //    println("\n\n$g")
     println("\nHamilton Cycle of a complete graph of size $size: ")
@@ -116,18 +218,55 @@ fun main(args: Array<String>) {
     // Eulerian Cycle
     println("------------------------EULERIAN------------------------\n")
 
-    // Example from the paper
-    val eGraph1: GraphEulerianCycle = createEulerianGraphFromThePaper()
+    var eGraph1: GraphEulerianCycle
+
+    // example from the paper
+    eGraph1 = createEulerianGraphFromThePaper_inDifferentOrder()
+
+    // random complete graph - max value about 65, stackoverflowerror for values above
+    eGraph1 = createCompleteEulerianGraph(10)
+
+    // concrete graph as example
+    eGraph1 = createEulerianGraphWithFourSubCycles()
+    // 1  0  3  2  4  5  4  2  5  2  3  4  3  5  3  0  2  0  4  0  5  0  1  3  1  2  1  4  1  5  1
+    //
+
+    // random doubly linked list graph - max value about 3000, maybe 3500, errors for values above
+//    eGraph1 = createDoublyLinkedListEulerianGraph(2000)
+
+    // print graph
     println("$eGraph1")
-//    for (i in 0..5) {
-//        eGraph1.nodes.shuffle()
-//        println("Eulerian Cycle: ${eGraph1.findEulerianCycle()}")
-//    }
-    println("Is eGraph1 balanced? (Should be true)   ${eGraph1.isBalanced()}")
-    println("${eGraph1.findFullEulerianSubCycles()}")
-    // [GG  GC  CG  GT  TG  GG, AT  TG  GC  CA  AA  AT]
-    // [CA  AA  AT  TG  GG  GC  CG  GT  TG  GC  CA]
-    // [GT  TG  GG  GC  CG  GT, CA  AA  AT  TG  GC  CA]
+
+    // print Eulerian Cycle
+    println("EULERIAN CYCLE")  // todo delete afterward
+    println("RESULT:     ${eGraph1.findEulerianCycle()}")
 
 }
 
+/*
+for withFourSubCycles
+
+Is eGraph1 balanced? (Should be true)   true
+EULERIAN CYCLE
+SubCycles: [1  0  1  3  1  2  1  4  1  5  1, 0  3  0  2  0  4  0  5  0, 3  2  3  4  3  5  3, 2  4  2  5  2, 4  5  4]
+SubCyclesAsList: [[1, 0, 1, 3, 1, 2, 1, 4, 1, 5, 1], [0, 3, 0, 2, 0, 4, 0, 5, 0], [3, 2, 3, 4, 3, 5, 3], [2, 4, 2, 5, 2], [4, 5, 4]]
+hahahaha:   [[1, 0, 3, 0, 2, 0, 4, 0, 5, 0, 1, 3, 1, 2, 1, 4, 1, 5, 1], [3, 2, 3, 4, 3, 5, 3], [2, 4, 2, 5, 2], [4, 5, 4]]
+hahahaha:   [[1, 0, 3, 2, 3, 4, 3, 5, 3, 0, 2, 0, 4, 0, 5, 0, 1, 3, 1, 2, 1, 4, 1, 5, 1], [2, 4, 2, 5, 2], [4, 5, 4]]
+hahahaha:   [[1, 0, 3, 2, 4, 2, 5, 2, 3, 4, 3, 5, 3, 0, 2, 0, 4, 0, 5, 0, 1, 3, 1, 2, 1, 4, 1, 5, 1], [4, 5, 4]]
+hahahaha:   [[1, 0, 3, 2, 4, 5, 4, 2, 5, 2, 3, 4, 3, 5, 3, 0, 2, 0, 4, 0, 5, 0, 1, 3, 1, 2, 1, 4, 1, 5, 1]]
+CycleAsList: [1, 0, 3, 2, 4, 5, 4, 2, 5, 2, 3, 4, 3, 5, 3, 0, 2, 0, 4, 0, 5, 0, 1, 3, 1, 2, 1, 4, 1, 5, 1]
+RESULT:     1  0  3  2  4  5  4  2  5  2  3  4  3  5  3  0  2  0  4  0  5  0  1  3  1  2  1  4  1  5  1
+ */
+
+/*
+for doublyLinkedList with size = 3
+
+Is eGraph1 balanced? (Should be true)   true
+EULERIAN CYCLE
+SubCycles: [Node 0  Node 1  Node 0, Node 1  Node 2  Node 1, Node 3  Node 2  Node 3]
+SubCyclesAsList: [[Node 0, Node 1, Node 0], [Node 1, Node 2, Node 1], [Node 3, Node 2, Node 3]]
+hahahaha:   [[Node 0, Node 1, Node 2, Node 1, Node 0], [Node 3, Node 2, Node 3]]
+hahahaha:   [[Node 0, Node 1, Node 2, Node 3, Node 2, Node 1, Node 0]]
+CycleAsList: [Node 0, Node 1, Node 2, Node 3, Node 2, Node 1, Node 0]
+RESULT:     Node 0  Node 1  Node 2  Node 3  Node 2  Node 1  Node 0
+ */

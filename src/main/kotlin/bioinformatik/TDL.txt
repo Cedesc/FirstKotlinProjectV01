@@ -12,10 +12,11 @@ todo automatically calculation of the edges
 
 Eulerian Cycle
     (0. build 3-mers)
-    1. build 2-mers out of 3-mers
-    2. build graph
+    (1. build 2-mers out of 3-mers)
+    2. build graph -- CHECK
     3. find eulerian cycle
 
 
-Now:
-    - create Ingoing (?) Edges for NodeEulerianCycle, which generates automatically if the outgoing edges are set
+
+todo fix double convert in eulerian cycle
+todo measure the time
