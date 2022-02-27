@@ -1,4 +1,4 @@
-package bioinformatik
+package EulerianAndHamiltonianCycles
 
 /**
  * Represents a node for the graph built to find an Eulerian Cycle.

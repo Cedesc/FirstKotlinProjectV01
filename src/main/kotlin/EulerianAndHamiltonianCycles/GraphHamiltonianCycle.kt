@@ -1,4 +1,4 @@
-package bioinformatik
+package EulerianAndHamiltonianCycles
 
 /**
  * Represents the graph constructed to find a Hamiltonian Cycle.
