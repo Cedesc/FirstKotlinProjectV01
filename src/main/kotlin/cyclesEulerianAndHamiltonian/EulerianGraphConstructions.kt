@@ -1,4 +1,4 @@
-package EulerianAndHamiltonianCycles
+package cyclesEulerianAndHamiltonian
 
 /**
  * Returns the Graph of the 2-mers for Eulerian Cycle from the paper.

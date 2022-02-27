@@ -1,4 +1,4 @@
-package EulerianAndHamiltonianCycles
+package cyclesEulerianAndHamiltonian
 
 
 fun main(args: Array<String>) {

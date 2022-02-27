@@ -1,4 +1,4 @@
-package EulerianAndHamiltonianCycles
+package cyclesEulerianAndHamiltonian
 
 /**
  * Returns the Graph of the 3-mers for Hamiltonian Cycle from the paper.

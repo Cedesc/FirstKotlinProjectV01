@@ -1,4 +1,4 @@
-package EulerianAndHamiltonianCycles
+package cyclesEulerianAndHamiltonian
 
 /**
  * Represents a node for the graph built to find a Hamiltonian Cycle.
